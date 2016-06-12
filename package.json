@@ -1,0 +1,28 @@
+{
+  "name": "electron-lottery",
+  "version": "1.0.0",
+  "description": "A minimal Electron application which is used to lottery",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "Electron",
+    "lottery",
+    "tutorial"
+  ],
+  "author": "qiaoni",
+  "license": "MIT",
+  "homepage": "",
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.0"
+  },
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "node-xlsx": "^0.7.1"
+  }
+}
