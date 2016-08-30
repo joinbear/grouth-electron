@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>抽奖活动</title>
+	<link rel="stylesheet" href="../stylesheet/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet/style.css">
+	</head>   
+<body>
+	<!-- 可视区域内容 -->
+	<div class="content">
+		<div class="font-title">幸运大抽奖</div>
+		<div class="box-top"></div>
+		<div class="result_box">
+			<ul id="result_box"></ul>
+		</div>
+		<div class="box-bottom"></div>
+	</div>
+	<!-- 操作栏 -->
+	<div class="float-box">
+		<div class="float-inner">
+			<input class="btn" type="button" id="start-btn" value="开始">
+			<input class="btn" type="button" id="stop-btn" value="停止">
+			<div class="dropdown" id="select-data"></div>
+			<a href="javascript:;" class="link" id="js-lookup-detail" data-url="lottery-detail.html">查看名单</a>
+			<a href="javascript:;" class="link" id="js-clear-data">重置数据</a>
+			<a href="javascript:;" class="link" id="js-hide-box">隐藏操作栏</a>
+		</div>
+	</div>
+	<div class="arrow none"></div>
+	<!-- 抽奖逻辑 -->
+	<script type="text/javascript" src="../javascript/lottery.js"></script>
+</body>   
+</html>

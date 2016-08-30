@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>抽奖程序</title>
+	<link rel="stylesheet" href="../stylesheet/bootstrap.min.css">
+	<style>
+		#msg {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 999;
+			width: 100%;
+		}
+		.alert {
+			width: 400px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.success {
+			color: #f60;
+		}
+		.alert-success {
+			border-radius: 5px;
+		}
+		#holder {
+			border: 1px dashed #ddd;
+			padding: 15px;
+		}
+		#tab-header a , #data-content a ,#unique-name a {
+			padding: 3px 10px;
+			border: 1px solid #ddd;
+			margin-right: 10px;
+			text-decoration: none;
+		}
+		#tab-header a:hover , 
+		#data-content a:hover ,
+		#unique-name a:hover {
+			text-decoration: none;
+		}
+		#tab-header a.current {
+			color: #fff;
+			background-color: #f60;
+		}
+		#data-content .alert-success.current {
+			background: #f60;
+			color: #fff;
+		}
+		.prize-content {
+			width: 70%;
+			padding-left: 10px;
+		}
+		.text-center {
+			text-align: center;
+		}
+		.container {
+			width: 800px;
+			padding-left: 30px;
+			/*color: #3c763d;*/
+		}
+		.form-control.prize-name {
+			width: 70%;
+		}
+		.file {
+			margin-top: 10px;
+	    position: relative;
+	    display: inline-block;
+	    background: #D0EEFF;
+	    border: 1px solid #99D3F5;
+	    border-radius: 4px;
+	    padding: 4px 12px;
+	    overflow: hidden;
+	    color: #1E88C7;
+	    text-decoration: none;
+	    text-indent: 0;
+	    line-height: 20px;
+	}
+	.file input {
+	    position: absolute;
+	    font-size: 100px;
+	    right: 0;
+	    top: 0;
+	    opacity: 0;
+	}
+	.file:hover {
+	    background: #AADFFD;
+	    border-color: #78C3F3;
+	    color: #004974;
+	    text-decoration: none;
+	}
+	.mt20 {
+		margin-top: 20px;
+	}
+	.table {
+		text-align: center;
+	}
+	.table>thead>tr>th {
+		text-align: center;
+	}
+	.gray {
+		color: gray;
+	}
+	.data-content ,
+	.unique-name {
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center">抽奖信息配置</h1>
+		<p class="mt20">抽奖名称</p>
+		<input type="text" placeholder="请输入6-16位字母或者数字" id="data-name" class="form-control prize-name">
+		<div class="row mt20">
+			<div class="col-md-7">
+				<div id="holder">将需要导入的数据拖拽到虚线框内</div>
+			</div>
+			<div class="col-md-5">
+				<a href="javascript:;" class="file">导入数据
+			    <input type="file" name="" id="upload">
+				</a>
+			</div>
+		</div>
+		<div class="data-intro" style="display: none;">
+			<p class="mt20">
+				请从excel表头中选择中奖信息(添加顺序即为展现顺序),例如：<span class="gray">花名,区域,部门</span>,则展现为：花名-区域-部门
+			</p>
+			<p>点击选中，再次点击即取消选中</p>
+			<div class="" id="tab-header"></div>
+			<!-- 数据存放区域 -->
+			<div class="data-content">
+				<p class="mt20">中奖信息(点击选项可设置唯一中奖信息，可选)</p>
+				<p>举例说明，假设选中项为部门，如果部门中有一个人中奖，则该部门其他人员均不再会中奖</p>
+				<div id="data-content"></div>
+			</div>
+		</div>
+		<!-- 奖项信息设置 -->
+		<div class="prize-content mt20">
+			<form class="form-horizontal" id="prizeForm">
+				<div class="">奖项信息配置(可以设置多个奖项信息)</div>
+				<div class="form-group">
+					<label for="" class="control-label">奖项名称</label>
+					<div><input type="text" class="form-control" reg="\S" placeholder="请输入奖项名称(例如：特等奖)" name="prizeName"></div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">每次中奖人数</label>
+					<div><input type="text" class="form-control" reg="\d+" placeholder="请输入每次中奖人数(只能是数字)" name="prizePerson"></div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">抽取次数</label>
+					<div><input type="text" class="form-control" reg="\d+" placeholder="请输入该奖项抽取次数(只能是数字)" name="prizeNum"></div>
+				</div>
+			</form>
+			<div style="text-align: right;">
+				<a class="btn btn-default" id="savePrizeConfig">新增配置</a>
+				<a class="btn btn-default" id="clearPrizeConfig">清空表单</a>
+			</div>
+			<!-- 奖项配置信息 -->
+		</div>
+		<table class="table table-hover" style="width: 70%;display: none;" id="config-table">
+			<thead>
+				<tr>
+					<th>奖项名称</th>
+					<th>每次中奖人数</th>
+					<th>抽取次数</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="configTbody">
+			</tbody>
+		</table>
+		<div style="position: fixed;top: 20px;right: 25px;text-align: right;">
+			<button id="make-sure" class="btn btn-success">保存配置信息</button>&nbsp;&nbsp;&nbsp;
+			<button id="make-more" class="btn btn-success">关闭</button>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../javascript/config.js"></script>
+</html>

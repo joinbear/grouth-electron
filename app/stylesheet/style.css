@@ -1,0 +1,268 @@
+body {
+	/*background:url(../images/bg_body.jpg) no-repeat center center;*/
+	height: 768px;
+	overflow: hidden;
+}
+* {
+	padding: 0;
+	margin: 0;
+}
+#msg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	width: 100%;
+}
+.alert {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+.box-top , .box-bottom , .result_box {
+	margin: 0 auto;
+}
+.content {
+	width:1024px;
+	height:768px;
+	background:url(../images/bg.png) no-repeat; 
+	margin:0 auto;
+	overflow: hidden;
+}
+.result_box {
+	margin:0 auto;
+	text-align:center;
+	padding-top: 15px;
+}
+.result_box ul {
+	list-style: none;
+	width:860px;
+	margin:0 auto;
+	height: 340px;
+}
+.result_box li {
+	width: 100%;
+	font-size: 18px;
+}
+.result_box .float-li {
+	display: inline-block;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+	margin-top: 15px;
+}
+.result_box .float-first {
+	margin-top: 100px;
+}
+.result_box .float-li:nth-child(even){
+	width:49%;
+	float:left;
+}
+.result_box .float-li:nth-child(odd){
+	width:49%;
+	float:right;
+}
+.result_box li span {
+	display: inline-block;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	padding:5px 8px;
+	border-radius: 5px;
+	color: #fff;
+  text-shadow: 1px 1px 15px #f00,-1px -1px 15px #f00; 
+	font-family:"微软雅黑";
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+.result_box li .user{
+	width:100%;
+	text-align: center;
+	margin-right: 15px;
+	font-weight: bold;
+}
+.result_box li .user .area {
+	font-size: 14px;
+	border:0 none;
+	margin-bottom: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: normal;
+}
+.result_box li .user1 , .result_box li .bless1 {
+	width: 100%;
+	padding: 5px 20px;
+	text-align: left;
+	font-weight: bold;
+}
+.result_box li .user1 i {
+	font-style: normal;
+	color: #f00;
+}
+/*.result_box li .user1 {
+	text-align: center;
+}*/
+.result_box li .bless1 {
+	height: 172px;
+}
+.result_box li .bless{
+	text-align: left;
+	box-flex:1;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	font-weight: bold;
+}
+.set-prize { 
+	width: 300px;
+	height:206px;
+	border: 1px solid #ddd;
+	background-color: #f0f0f0;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px #ddd;
+	padding:20px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -170px;
+	margin-top: -100px;
+	z-index: 999;
+}
+.set-prize input { 
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	padding: 3px 3px 3px 8px;
+	margin-bottom: 10px;
+	border-radius:3px; 
+	border:1px solid #ddd;
+	font-size: 14px;
+	background-color: #fff;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+#fonts {
+	margin-bottom: 10px;
+	width: 100%;
+	font-size: 16px;
+	padding:3px 0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+.set-prize .radio-dir {
+	width: auto;
+	padding:4px;
+	vertical-align: middle;
+	height: 16px;
+	line-height:  16px;
+	margin-bottom: 0;
+}
+.set-prize .set-btn { 
+	width:40%;
+	background-color: #f60;
+	color: #fff;
+	cursor: pointer;
+	height:36px;
+	line-height: 36px;
+	padding:0;
+	font-weight: bold;
+	margin:10px 13px;
+}
+.float-box {
+	position: fixed;
+	bottom:20px;
+	left: 50%;
+	margin-left: -450px;
+	width:900px;
+	margin-top: 20px;
+}
+.dropdown {
+	font-size: 16px;
+	font-weight: bold;
+	width: 124px;
+	margin:0 20px;
+}
+.dropdown .btn{
+	padding: 8px 0;
+	line-height: 24px;
+	background-color:#f3891f;
+	border:1px solid #f3891f;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	width: 100%;
+	position: relative;
+}
+.dropdown .btn .caret {
+	position: absolute;
+	right: 5px;
+	top: 20px;
+}
+.dropup .dropdown-menu{
+	display: block;
+}
+.float-inner {
+	display:box;
+	display: -webkit-box;
+	display: -moz-box;
+	width: 100%;
+}
+.float-inner .link , .float-inner input {
+	display:block;
+	background-color:#f3891f;
+	border:1px solid #f3891f;
+	color: #fff;
+	padding: 8px;
+	font-size: 16px;
+	font-weight: bold;
+	line-height:24px;
+	text-decoration: none;
+	text-align: center;
+	border-radius:5px;
+	width:100%;
+	margin:0 20px;
+	cursor: pointer;
+	-webkit-box-sizing:border-box;
+	-webkit-box-flex:1;
+}
+.float-inner .link:hover , .float-inner input:hover , .dropdown .btn:hover,
+.float-inner .link:focus , .float-inner input:focus , .dropdown .btn:focus{
+	color:#fff;
+	background-color:#f60;
+	border:1px solid #f60;
+}
+.none { 
+	display: none;
+}
+.disabled {
+	background-color:#808080!important;
+	border: 1px solid #808080!important;
+}
+.arrow {
+	height: 0;
+	width: 0;
+	position: fixed;
+	bottom:24px;
+	left: 1px;
+	cursor: pointer;
+	border-right: 18px solid transparent;
+	border-left: 18px solid #f60;
+	border-top: 18px solid transparent;
+	border-bottom: 18px solid transparent;
+}
+.clearfix:after { 
+	content:'.';
+	display:block;
+	height:0;
+	clear:both;
+	overflow:hidden;
+}
+
+.font-title {
+  width: 600px;
+  margin: 60px auto 0 auto;
+  padding: 30px;
+  font: bold 88px/100% "微软雅黑", "Lucida Grande", "Lucida Sans", Helvetica, Arial, Sans;;
+  color: #ffec67;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 0 15px #bf4400, 0 0 20px #bf4400, 0 0 35px #bf4400, 0 0 60px #f17120, 0 0 90px #f17120;
+}
