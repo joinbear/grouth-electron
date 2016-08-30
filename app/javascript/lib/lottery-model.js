@@ -1,8 +1,8 @@
-const fs    = require('fs-extra');
+const fs      = require('fs-extra');
 // before require the lib, we should use npm install jquery --save;
-const $     = require('jquery');
-const utils = require('./utils');
-
+const $       = require('jquery');
+const utils   = require('./utils');
+const tagName = '选择抽奖名称';
 /**
  * [Lottery 抽奖构造函数]
  * @param {[type]} sourceName [数据源名称]
@@ -12,7 +12,6 @@ function Lottery(sourceName){
 	this.sourceName   = sourceName;
 	this.timer        = '';
 	this.counter      = 0;
-
 }
 
 /**
@@ -33,8 +32,8 @@ Lottery.prototype.readDataSource = function(){
 Lottery.prototype.buildDataSource = function(){
 
 	const source     = this.readDataSource();
-	const sourceName = utils.getLocal('sourceName') || '选择抽奖名称';
-	let options      = '<li><a href="#" value="">选择抽奖名称</a></li>';
+	const sourceName = utils.getLocal('sourceName') || tagName;
+	let options      = `<li><a href="#" value="">${tagName}</a></li>`;
 	
 	if( source.length > 0){
 		options += source.map((element,index)=>{
@@ -70,10 +69,14 @@ Lottery.prototype.init = function(sourceName){
 
 }
 
+/**
+ * [isSelectData 验证数据源选择]
+ * @return {Boolean} [description]
+ */
 Lottery.prototype.isSelectData = function(){
 	const sourceName = utils.getLocal('sourceName') || '';
 	if(!sourceName){
-		utils.toastMsg('请选择抽奖名称');
+		utils.toastMsg(tagName);
 		return true;
 	}else{
 		return false;
