@@ -1,14 +1,27 @@
 // before require the lib, we should use npm install jquery --save;
-const $ = require('jquery');
+const $                 = require('jquery');
+const utils             = require('./javascript/lib/utils');
 const { BrowserWindow } = require('electron').remote;
 
 
-
-
 $('.item').on('click', function(event) {
+
 	event.preventDefault();
 	let url = $(this).attr('data-url');
-	let win = new BrowserWindow({width: 800, height: 600});
-	win.loadURL(url);
-	let webContents = win.webContents;
+	if(url){
+		let win = new BrowserWindow({width: 1024, height: 768 , fullscreen : false});
+		win.loadURL(`file://${__dirname}/`+url);
+		let webContents = win.webContents;
+		// webContents.openDevTools();
+	}else{
+		const sure = confirm('确认情况历史数据？');
+		if(sure){
+			const success = utils.emptyDir();
+			if(success){
+				utils.toastMsg('历史数据已经清空！');
+				utils.clearLocal();
+			}
+		}
+	}
+	
 });

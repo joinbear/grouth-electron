@@ -20,3 +20,4 @@ node_modules
 .DS_Store
 node_modules
 public/.sass-cache
+lottery-darwin-x64/
