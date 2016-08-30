@@ -1,6 +1,7 @@
 const $                 = require('jquery');
 const { BrowserWindow } = require('electron').remote;
 const Lottery           = require('../javascript/lib/lottery-model');
+const utils             = require('../javascript/lib/utils');
 const lottery           = new Lottery();
 
 $(function(){
@@ -16,9 +17,9 @@ $(function(){
 		if(dataSource && dataSource !='请选择抽奖名称'){
 			lottery.init(dataSource);
 			initDataSource();
-			// hideToolBar();
+			hideToolBar();
 		}else{
-			alert('请选择抽奖名称');
+			utils.toastMsg('请选择抽奖名称');
 		}
 		$("#select-data").removeClass('dropup')
 	});

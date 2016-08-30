@@ -63,18 +63,28 @@ Lottery.prototype.init = function(sourceName){
 
 	const data_obj = utils.readFile( utils.createPath(sourceName + '.txt') );
 	const settings = utils.readFile( utils.createPath(sourceName + '-settings.txt') );
+	utils.clearLocal();
 	utils.setLocal('sourceName',sourceName);
 	utils.setLocal('settings',settings);
 	utils.setLocal('data_obj',data_obj);
 
 }
 
+Lottery.prototype.isSelectData = function(){
+	const sourceName = utils.getLocal('sourceName') || '';
+	if(!sourceName){
+		utils.toastMsg('请选择抽奖名称');
+		return true;
+	}else{
+		return false;
+	}
+}
 /**
  * [start 开始抽奖]
  * @return {[type]} [description]
  */
 Lottery.prototype.start = function(){
-	
+	if( this.isSelectData() ) return false;
 	if( this.isFinish() ) return false;
 	clearInterval(this.timer);
 	const settings = this.getObjectByName('settings');
@@ -251,7 +261,7 @@ Lottery.prototype.isFinish = function(){
  */
 Lottery.prototype.stop = function(){
 
-
+	if( this.isSelectData() ) return false;
 	if( this.isFinish() ) return false;
 	this.counter++;
 	clearInterval(this.timer);
