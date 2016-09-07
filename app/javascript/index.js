@@ -12,9 +12,11 @@ $('.item').on('click', function(event) {
 		let win = new BrowserWindow({width: 1024, height: 768 , fullscreen : false});
 		win.loadURL(`file://${__dirname}/`+url);
 		let webContents = win.webContents;
-		// webContents.openDevTools();
+		if(utils.debug){
+			webContents.openDevTools();
+		}
 	}else{
-		const sure = confirm('确认情况历史数据？');
+		const sure = confirm('确认清除历史数据？');
 		if(sure){
 			const success = utils.emptyDir();
 			if(success){

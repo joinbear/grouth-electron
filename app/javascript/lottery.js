@@ -42,7 +42,10 @@ $(function(){
 	//重置数据
 	$("#js-clear-data").on('click',function(event){
 		const sure = confirm('确认重置数据？');
-		if( sure ) lottery.clear();
+		if( sure ) {
+			lottery.clear();
+			$(this).blur();
+		}
 	});
 
 	// 绑定空格和回车事件

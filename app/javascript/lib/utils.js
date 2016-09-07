@@ -14,6 +14,7 @@ function alertMsg(message,messageType = 'info',delayTime = 1500){
   },delayTime);
 }
 module.exports = {
+	debug: true,
 	toastMsg:function(message,messageType = 'info',delayTime = 1500){
 		alertMsg(message,messageType = 'info',delayTime = 1500);
 	},

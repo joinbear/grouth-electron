@@ -71,11 +71,13 @@ Prize.prototype.saveExcelData = function(fileName){
 	const dataArray = [];
 	const data      = this.excelData;
   for (let i = 1 , len = data.length  ; i < len ; i++) {
-		let temp             = data[i];
-		dataArray[i-1]       = {};
-		dataArray[i-1]['id'] = i;
-    for(let j = 0; j < temp.length ; j++ ) {
-      dataArray[i-1]['Name' + parseInt(j + 1 )] = temp[j] || '';
+    let temp = data[i];
+		if(temp.length > 0){
+      dataArray[i-1]       = {};
+      dataArray[i-1]['id'] = i;
+      for(let j = 0; j < temp.length ; j++ ) {
+        dataArray[i-1]['Name' + parseInt(j + 1 )] = temp[j] || '';
+      }
     }
   }
   const success = util.writeFile( util.createPath(fileName + '.txt'), JSON.stringify(dataArray) , true );
