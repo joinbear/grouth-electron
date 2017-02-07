@@ -2,9 +2,68 @@ const $                 = require('jquery');
 const { BrowserWindow } = require('electron').remote;
 const Lottery           = require('../javascript/lib/lottery-model');
 const utils             = require('../javascript/lib/utils');
+const IntroJs           = require('intro.js/intro');
+const introPsth         = utils.createPath('lottery_intro.txt');
 const lottery           = new Lottery();
 
 $(function(){
+
+
+
+		function setIntro(){
+	  	IntroJs
+	  	.introJs()
+	    .setOptions({
+	        steps: [
+		        { 
+	            intro: "即将开启使用教程引导，请根据引导进行操作，点击next开始引导之旅"
+	          },
+	          {
+	            element: '#select-data',
+	            intro: "选择你配置好的抽奖信息",
+	            position: 'top'
+	          },
+	          {
+	            element: '#start-btn',
+	            intro: "选择好抽奖数据后点击开始或者按下空格键即开始摇奖",
+	            position: 'top'
+	          },
+	          {
+	            element: '#stop-btn',
+	            intro: '点击停止或者回车键即可停止摇奖',
+	            position: 'top'
+	          },
+	          {
+	            element: '#js-lookup-detail',
+	            intro: "抽奖完毕，可以点击查看所有抽奖明细",
+	            position: 'top'
+	          },
+	          {
+	            element: '#js-clear-data',
+	            intro: "点击该按钮可以将数据重置为初始状态",
+	            position: 'top'
+	          },
+	          {
+	            element: '#js-hide-box',
+	            intro: "可以点击该按钮，隐藏操作栏",
+	            position: 'top'
+	          }
+	        ]
+	    })
+	    .start()
+	    .oncomplete(function(){
+	      storageIntro();
+	    })
+	    .onexit(function() {
+	      storageIntro();
+	    });
+	}
+	function storageIntro(){
+	  utils.writeFile(introPsth,'1');
+	}
+	if(utils.readFile(introPsth) != 1){
+	  //setIntro();
+	}
 
 	// 选择抽奖数据源
 	initDataSource();
@@ -17,7 +76,7 @@ $(function(){
 		if(dataSource && dataSource !='请选择抽奖名称'){
 			lottery.init(dataSource);
 			initDataSource();
-			hideToolBar();
+			//hideToolBar();
 		}else{
 			utils.toastMsg('请选择抽奖名称');
 		}
@@ -45,6 +104,7 @@ $(function(){
 		if( sure ) {
 			lottery.clear();
 			$(this).blur();
+			$("#result_box").html("");
 		}
 	});
 

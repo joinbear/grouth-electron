@@ -2,8 +2,8 @@ const fs         = require('fs-extra');
 // before require the lib, we should use npm install node-xlsx --save;
 const xlsxParser = require('node-xlsx');
 const $          = require('jquery');
-const path       = require('path');
-const dataPath   = path.resolve(__dirname, '../../data/');
+const dataPath   = require("os").homedir() + '/lottery/data/';
+
 function alertMsg(message,messageType = 'info',delayTime = 1500){
 	if($("#msg").size() == 0){
 		$('body').append('<div id="msg"></div>');
@@ -45,7 +45,8 @@ module.exports = {
 	 * @return {[type]}          [description]
 	 */
 	createPath : function(fileName){
-		return dataPath + '/' + fileName;
+		//console.log(dataPath + fileName);
+		return dataPath + fileName;
 	},
 	/**
 	 * [writeFile 写入文件]

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>抽奖程序</title>
 	<link rel="stylesheet" href="../stylesheet/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet/introjs.css">
 	<style>
 		#msg {
 			position: fixed;
@@ -101,8 +102,10 @@
 		color: gray;
 	}
 	.data-content ,
-	.unique-name {
-		display: none;
+	.unique-name ,
+	#tab-header {
+		/*display: none;*/
+		border-bottom: 1px dashed #ddd;
 	}
 	</style>
 </head>
@@ -110,35 +113,35 @@
 	<div class="container">
 		<h1 class="text-center">抽奖信息配置</h1>
 		<p class="mt20">抽奖名称</p>
-		<input type="text" placeholder="请输入6-16位字母或者数字" id="data-name" class="form-control prize-name">
+		<input type="text" placeholder="请输入6-16位字母或者数字" id="data-name" class="form-control prize-name"/>
 		<div class="row mt20">
 			<div class="col-md-7">
 				<div id="holder">将需要导入的数据拖拽到虚线框内</div>
 			</div>
-			<div class="col-md-5">
+			<div class="col-md-5" id="step2">
 				<a href="javascript:;" class="file">导入数据
-			    <input type="file" name="" id="upload">
+			    <input type="file" name="" id="upload"/>
 				</a>
 			</div>
 		</div>
-		<div class="data-intro" style="display: none;">
+		<div class="data-intro" id="step3">
 			<p class="mt20">
 				请从excel表头中选择中奖信息(添加顺序即为展现顺序),例如：<span class="gray">花名,区域,部门</span>,则展现为：花名-区域-部门
 			</p>
 			<p>点击选中，再次点击即取消选中</p>
 			<div class="" id="tab-header"></div>
 			<!-- 数据存放区域 -->
-			<div class="data-content">
+			<div class="data-content" id="step4">
 				<p class="mt20">中奖信息(点击选项可设置唯一中奖信息，可选)</p>
 				<p>举例说明，假设选中项为部门，如果部门中有一个人中奖，则该部门其他人员均不再会中奖</p>
 				<div id="data-content"></div>
 			</div>
 		</div>
 		<!-- 奖项信息设置 -->
-		<div class="prize-content mt20">
+		<div class="prize-content mt20" id="step5">
 			<form class="form-horizontal" id="prizeForm">
 				<div class="">奖项信息配置(可以设置多个奖项信息)</div>
-				<div class="form-group">
+				<div class="form-group" >
 					<label for="" class="control-label">奖项名称</label>
 					<div><input type="text" class="form-control" reg="\S" placeholder="请输入奖项名称(例如：特等奖)" name="prizeName"></div>
 				</div>
@@ -169,7 +172,7 @@
 			<tbody id="configTbody">
 			</tbody>
 		</table>
-		<div style="position: fixed;top: 20px;right: 25px;text-align: right;">
+		<div style="position: fixed;top: 20px;right: 25px;text-align: right;" id="step7">
 			<button id="make-sure" class="btn btn-success">保存配置信息</button>&nbsp;&nbsp;&nbsp;
 			<button id="make-more" class="btn btn-success">关闭</button>
 		</div>

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>抽奖程序</title>
 	<link rel="stylesheet" href="./stylesheet/bootstrap.min.css">
+	<link rel="stylesheet" href="./stylesheet/introjs.css">
 	<style>
 		.list {
 			width: 400px;
@@ -33,14 +34,20 @@
 	<!-- chrome://gpu/ look up the gpu infomation -->
 	<div class="list">
 		<div class="panel panel-success">
-			<div class="panel-body item" data-url="template/config.html">配置抽奖信息</div>
+			<div class="panel-body item" data-url="template/config.html" data-intro='抽奖需先设置抽奖信息' data-step='1'>配置抽奖信息</div>
 		</div>
 		<div class="panel panel-success">
-			<div class="panel-body item" data-url="template/lottery.html">点击开始抽奖</div>
+			<div class="panel-body item" data-url="template/lottery.html" data-intro='配置好抽奖信息后，就可以开始抽奖了' data-step='2'>点击开始抽奖</div>
 		</div>
 		<div class="panel panel-success">
-			<div class="panel-body item" data-url="">清空所有数据</div>
+			<div class="panel-body item" data-url="" data-intro='当配置奖项信息太多或者想废弃，可以点击该按钮清除' data-step='3'>清空所有数据</div>
 		</div>
+		<div class="panel panel-success">
+			<div class="panel-body item" data-url="" data-intro='开始帮助引导教程' data-step='4'>开始帮助引导</div>
+		</div>
+<!-- 		<div class="panel panel-success">
+			<div class="panel-body item" data-url="">doshell</div>
+		</div> -->
 	</div>
 </body>
 <script type="text/javascript" src="./javascript/index.js"></script>
