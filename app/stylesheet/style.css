@@ -25,7 +25,7 @@ body {
 .content {
 	width:1024px;
 	height:768px;
-	background:url(../images/bg.png) no-repeat; 
+	background:url(../images/bg.jpg) no-repeat; 
 	margin:0 auto;
 	overflow: hidden;
 }
@@ -52,7 +52,7 @@ body {
 	margin-top: 15px;
 }
 .result_box .float-first {
-	margin-top: 100px;
+	margin-top: 300px;
 }
 .result_box .float-li:nth-child(even){
 	width:49%;
