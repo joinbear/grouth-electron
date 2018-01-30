@@ -7,7 +7,10 @@
     "start": "electron main.js",
     "packager": "asar pack ./lottery-darwin-x64/lottery.app/Contents/Resources/app/ ./lottery-darwin-x64/lottery.app/Contents/Resources/app.asar",
     "build": "electron-packager ./ lottery --platform=darwin --arch=x64 --overwrite --ignore=dev-settings --prune",
-    "build-exe": "electron-packager ./ lottery --platform=win32 --arch=x64 --overwrite --ignore=dev-settings --prune"
+    "build-exe": "electron-packager ./ lottery --platform=win32 --arch=x64 --overwrite --ignore=dev-settings --prune",
+    "package:mac": "rimraf package && electron-packager . TEST --platform=darwin --arch=x64 --overwrite --icon=hosts.icns --out=./package --electron-version=1.6.11 --ignore=\"(build|client$|static|theme|.gitignore|LICENSE|README.md|.editorconfig|.eslintrc|node_modules|gruntPackage.json|Gruntfile.js|yarn.lock|socket|package_dir|git_img)\"",
+    "package:win": "rimraf package && electron-packager . TEST --platform=win32 --arch=x64 --overwrite --icon=hosts.ico --out=./package --electron-version=1.6.11 --version-string.CompanyName=TEST --version-string.ProductName=TEST --ignore=\"(build|client$|static|theme|.gitignore|LICENSE|README.md|.editorconfig|.eslintrc|node_modules|gruntPackage.json|Gruntfile.js|yarn.lock|socket|package_dir|git_img)\"",
+    "package:linux": "electron-packager . TEST --platform=linux --arch=x64 --overwrite --out=/package --electron-version=1.6.11 --asar --ignore=\"(build|client|static|theme|.gitignore|LICENSE|README.md|.editorconfig|.eslintrc|node_modules|gruntPackage.json|Gruntfile.js|yarn.lock|socket|package_dir|git_img)\"",
   },
   "repository": {
     "type": "git",
