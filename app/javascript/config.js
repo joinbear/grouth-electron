@@ -5,6 +5,7 @@ const xlsxParser = require('node-xlsx');
 const $          = require('jquery');
 const IntroJs    = require('intro.js/intro');
 const holder     = document.getElementById('holder');
+const holder1     = document.getElementById('holder1');
 // the file  is resolved relative to index.html
 const utils      = require('../javascript/lib/utils');
 const Prize      = require('../javascript/lib/config-model');
@@ -29,6 +30,14 @@ function setIntro(){
           {
             element: '#data-name',
             intro: "请输入用于抽奖的名称"
+          },
+          {
+            element: '#data-title',
+            intro: "请输入用于抽奖的标题(选填，默认为幸运大抽奖),选择next跳过"
+          },
+          {
+            element: '#step-bg',
+            intro: "请上传抽奖的背景图片(选填，默认有抽奖背景),选择next跳过"
           },
           {
             element: '#step2',
@@ -94,7 +103,24 @@ $("#upload").on('change',function(event){
   // console.log('your choose file is', filePath);
   return false;
 });
-
+$("#upload-bg").on('change',function(event){
+  let name = $("#data-name").val();
+  if(!name){
+    utils.toastMsg('请输入配置名称','danger');
+    return false;
+  }
+  filePath = event.target.files[0].path;
+  prize.addPrizeBg(filePath,name,function(result){
+    if(result){
+      holder1.innerHTML = '<span class="success">图片上传成功</span>';
+    }else{
+      holder1.innerHTML = '<span class="success">图片上传成功</span>';
+    }
+  });
+  
+  // console.log('your choose file is', filePath);
+  return false;
+});
 // 选择展现字段
 $("#tab-header").on('click','a',function(event){
 
@@ -193,6 +219,8 @@ function windowAction(type){
 }
 function checkValidate() {
   const name = $("#data-name").val();
+  const title = $("#data-title").val();
+  prize.settings.prizeTitle = title;
   if(name == ''){
     utils.toastMsg('请输入配置名称','danger');
     return false;

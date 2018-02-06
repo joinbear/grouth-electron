@@ -9,7 +9,7 @@
 <body>
 	<!-- 可视区域内容 -->
 	<div class="content">
-		<div class="font-title">幸运大抽奖</div>
+		<div class="font-title" id="prize-title"></div>
 		<div class="box-top"></div>
 		<div class="result_box">
 			<ul id="result_box"></ul>
@@ -23,11 +23,35 @@
 			<input class="btn" type="button" id="stop-btn" value="停止(回车键)">
 			<div class="dropdown" id="select-data"></div>
 			<a href="javascript:;" class="link" id="js-lookup-detail" data-url="lottery-detail.html">查看名单</a>
-			<a href="javascript:;" class="link" id="js-clear-data">重置数据</a>
+			<a href="javascript:;" class="link" id="js-add">新增奖项</a>
 			<a href="javascript:;" class="link" id="js-hide-box">隐藏操作栏</a>
+			<a href="javascript:;" class="link" id="js-clear-data">重置数据</a>
+			
 		</div>
 	</div>
 	<div class="arrow none"></div>
+	<div class="config none">
+			<form class="form-horizontal" id="prizeForm">
+				<div style="text-align: right;"><a class="btn btn-default" id="hide-add-box">关闭</a></div>
+				<div class="form-group" >
+					<label for="" class="control-label">奖项名称</label>
+					<div><input type="text" class="form-control" reg="\S" placeholder="请输入奖项名称(例如：特等奖)" name="prizeName"></div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">每次中奖人数</label>
+					<div><input type="text" class="form-control" reg="\d+" placeholder="请输入每次中奖人数(只能是数字)" name="prizePerson"></div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label">抽取次数</label>
+					<div><input type="text" class="form-control" reg="\d+" placeholder="请输入该奖项抽取次数(只能是数字)" name="prizeNum"></div>
+				</div>
+			</form>
+			<div style="text-align: right;">
+				<a class="btn btn-default" id="add-prize">新增</a>
+				<a class="btn btn-default" id="reset">重置表单</a>
+			</div>
+			<!-- 奖项配置信息 -->
+		</div>
 	<!-- 抽奖逻辑 -->
 	<script type="text/javascript" src="../javascript/lottery.js"></script>
 </body>   

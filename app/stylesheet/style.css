@@ -25,7 +25,8 @@ body {
 .content {
 	width:1024px;
 	height:768px;
-	background:url(../images/bg.png) no-repeat; 
+	background-repeat: no-repeat; 
+	background-image: url(../images/bg.png);
 	margin:0 auto;
 	overflow: hidden;
 }
@@ -52,7 +53,7 @@ body {
 	margin-top: 15px;
 }
 .result_box .float-first {
-	margin-top: 300px;
+	margin-top: 150px;
 }
 .result_box .float-li:nth-child(even){
 	width:49%;
@@ -170,8 +171,8 @@ body {
 	position: fixed;
 	bottom:20px;
 	left: 50%;
-	margin-left: -450px;
-	width:900px;
+	margin-left: -500px;
+	width:1000px;
 	margin-top: 20px;
 }
 .dropdown {
@@ -255,7 +256,16 @@ body {
 	clear:both;
 	overflow:hidden;
 }
-
+.config {
+	position: fixed;
+	left: 100px;
+	right: 100px;
+	top: 100px;
+	bottom: 100px;
+	padding: 30px;
+	border-radius: 10px;
+	background-color: #fff;
+}
 .font-title {
   width: 600px;
   margin: 60px auto 0 auto;

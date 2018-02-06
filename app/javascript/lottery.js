@@ -79,6 +79,8 @@ $(function(){
 			//hideToolBar();
 		}else{
 			utils.toastMsg('请选择抽奖名称');
+			$("#prize-title").html("");
+			$(".content").attr("css","");
 		}
 		$("#select-data").removeClass('dropup')
 	});
@@ -107,7 +109,31 @@ $(function(){
 			$("#result_box").html("");
 		}
 	});
-
+	$("#add-prize").on("click",function(){
+		var settings =  JSON.parse(utils.getLocal("settings"));
+		const isValidate = utils.validate($("#prizeForm .form-control"));
+		if(isValidate){
+		    const formObj = utils.serializeJson( $("#prizeForm") );
+		    formObj['id'] = settings.prizeIndex
+		    settings.prizeArray.push(formObj);
+		    settings.prizeIndex = settings.prizeIndex + 1;
+		    utils.setLocal("settings",JSON.stringify(settings));
+		    utils.removeLocal('isFinish');
+		    utils.toastMsg('新增成功！','danger');
+			$("#prizeForm")[0].reset();
+			$(".config").hide();
+		}
+		
+	})
+	$("#hide-add-box").on('click',function(){
+		$(".config").hide();
+	});
+	$("#reset").on('click',function(){
+		$("#prizeForm")[0].reset();
+	});
+	$("#js-add").on('click',function(){
+		$(".config").show();
+	});
 	// 绑定空格和回车事件
 	$(document).keydown(function(event){
 		switch(event.which){

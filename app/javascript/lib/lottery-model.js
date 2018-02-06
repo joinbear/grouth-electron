@@ -62,6 +62,10 @@ Lottery.prototype.init = function(sourceName){
 
 	const data_obj = utils.readFile( utils.createPath(sourceName + '.txt') );
 	const settings = utils.readFile( utils.createPath(sourceName + '-settings.txt') );
+	$("#prize-title").html(JSON.parse(settings).prizeTitle);
+	if(JSON.parse(settings).prizeBg){
+		$(".content").css("background-image",'url('+JSON.parse(settings).prizeBg+')');
+	}
 	utils.clearLocal();
 	utils.setLocal('sourceName',sourceName);
 	utils.setLocal('settings',settings);

@@ -179,6 +179,13 @@ module.exports = {
 		localStorage.clear();
 	},
 	/**
+	 * [clearLocal 清除本地数据]
+	 * @return {[type]} [description]
+	 */
+	removeLocal:function(name){
+		localStorage.removeItem(name);
+	},
+	/**
    * [serializeJson 将表单数据序列化为json]
    * @param  {[type]} formObj [需要序列化为json的form表单]
    * @return {[type]}                [description]

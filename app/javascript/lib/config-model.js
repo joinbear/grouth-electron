@@ -14,7 +14,27 @@ function Prize() {
 	  prizeFields : [],
 	  // 抽奖主键（唯一，若不设置，默认为id）
 	  uniqueName : 'id',
+    prizeTitle : '幸运大抽奖',
+    prizeBg: '../images/bg.png'
 	}
+}
+/**
+ * [读取数据源配置文件]
+ * @return {[type]} [description]
+ */
+Prize.prototype.addPrizeBg = function(filePath,fileName,fn){
+  let writeName = fileName + '.' + filePath.replace(/^\/.+\./,'');
+  let writePath = util.createPath(writeName);
+  this.settings.prizeBg = writePath;
+  fs.readFile(filePath, function(err, originBuffer) {
+    // 生成图片2(把buffer写入到图片文件)
+    fs.writeFile(writePath, originBuffer, function(err) {
+      if(err) {
+        fn(false)
+      }
+      fn(true);
+    });
+  });
 }
 /**
  * [读取数据源配置文件]
