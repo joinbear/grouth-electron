@@ -5,9 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron main.js",
-    "packager": "asar pack ./lottery-darwin-x64/lottery.app/Contents/Resources/app/ ./lottery-darwin-x64/lottery.app/Contents/Resources/app.asar",
-    "build": "electron-packager ./ lottery --platform=darwin --arch=x64 --overwrite --ignore=dev-settings --prune",
-    "build-exe": "electron-packager ./ lottery --platform=win32 --arch=x64 --overwrite --ignore=dev-settings --prune"
+    "packager": "asar pack ./ app.asar",
+    "build": "ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-packager ./ lottery --platform=darwin --arch=x64 --overwrite --ignore=dev-settings --prune",
+    "build-exe": "ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-packager ./ lottery --platform=win32 --arch=x64 --overwrite --ignore=dev-settings --prune"
   },
   "repository": {
     "type": "git",
