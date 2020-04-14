@@ -100,7 +100,7 @@ Lottery.prototype.start = function(){
 	let prizeName  = prizeArray[0]['prizeName'];
 	this.counter   = utils.getLocal('counter') || 0;
 	// 判断奖项是否抽取完成
-	if( this.counter >= prizeArray[0]['prizeNum'] ){
+	if( this.counter - prizeArray[0]['prizeNum'] >= 0){
 		prizeArray = utils.deleteElement(prizeArray,id,'id');
 		settings['prizeArray'] = prizeArray;
 		this.counter = 0;
@@ -125,8 +125,6 @@ Lottery.prototype.start = function(){
 	}
 	//获取抽奖数据
 	this.createWinner(prizeArray[0],settings.uniqueName,settings.prizeFields);
-
-
 }
 
 /**
@@ -140,6 +138,7 @@ Lottery.prototype.createWinner = function(prizeArray,uniqueName,prizeFields){
 	const number      = data_obj.length;
 	const _self       = this;
 	this.buildResultList($("#result_box"),prizeArray);
+
 	this.timer = setInterval(function(){
 		let newArr = [] , newNo = [] , randomNo;
 		let winnerArray = _self.getArrayByName('winnerArray');
@@ -151,13 +150,13 @@ Lottery.prototype.createWinner = function(prizeArray,uniqueName,prizeFields){
 			if($.inArray(randomNo,newArr) > -1 || $.inArray(uniqueValue,winnerArray) > -1 ){
 				i--;
 			}else{
-				_self.buildResultDetail(i,randomNo,uniqueValue,prizeFields);
+				_self.buildResultDetail(data_obj,i,randomNo,uniqueValue,prizeFields);
 				newNo.push(uniqueValue);
 				winnerArray.push(uniqueValue);
 				newArr.push(randomNo);
 			}
 		}
-	},16); //随机数据变换速度，越小变换的越快
+	}, 100); //随机数据变换速度，越小变换的越快
 
 	// 禁用开始按钮
 	$("#start-btn").addClass('disabled').attr('disabled','disabled');
@@ -170,11 +169,10 @@ Lottery.prototype.createWinner = function(prizeArray,uniqueName,prizeFields){
  * @param  {[type]}   prizeFields [展现作用域]
  * @return {[type]}       [description]
  */
-Lottery.prototype.buildResultDetail = function(index,randomNo,uniqueValue,prizeFields){
-
-	const data_obj = this.getObjectByName('data_obj');
+Lottery.prototype.buildResultDetail = function(data_obj, index,randomNo,uniqueValue,prizeFields){
 	let   temp     = '<span>';
 	let   len      = prizeFields.length;
+	
 	for( let i = 0 ; i < len ; i++){
 		let field = prizeFields[i];
 		if(i == len -1 ){
